@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <title>Easy shopping</title>
+</head>
+
+<body>
+    <main>
+        <section class="box-login">
+            <header class="cabecalho">
+                <h1>
+                    LOGIN
+                </h1>
+            </header>
+            <form>
+                <input placeholder="E-mail" class="standard-input-field" type="email" name="email" id="email-input" required>
+                <input placeholder="Senha" class="standard-input-field" type="password" name="" id="pass-input" trim required>
+                <button class="standard-button" type="submit" onclick="entrar()">Entrar</button>
+                <button class="standard-button" type="button" onclick="cadastrar()">Cadastrar-se</button>
+            </form>
+            <footer>
+
+            </footer>
+        </section>
+    </main>
+</body>
+
+</html>
+
+<script>
+    function entrar() {
+        document.location.href = "./user-home.html"
+    }
+    function cadastrar() {
+        document.location.href = "./nova-conta.html"
+    }
+</script>
+
+<style>
+    .box-login {
+        width: 500px;
+        height: 400px;
+        border: 1px solid gray;
+        border-radius: 10px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    .cabecalho {
+        background-color: lightskyblue;
+        height: 55px;
+        text-align: center;
+    }
+    .cabecalho h1 {
+        margin-bottom: 0;
+    }
+    .box-login form {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        height: 150px;
+        justify-content: space-around;
+    }
+</style>

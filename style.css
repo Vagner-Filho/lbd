@@ -1,0 +1,29 @@
+.standard-input-field {
+    width: 250px;
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+.standard-button {
+    border-radius: 10px;
+    border: none;
+    background-color: lightskyblue;
+    height: 25px;
+    cursor: pointer;
+}
+.blue-column {
+    position: absolute;
+    height: 100%;
+    width: 70px;
+    background-color: lightskyblue;
+}
+.card {
+    overflow: hidden;
+    height: 200px;
+    width: 170px;
+    border-radius: 10px;
+    border: none;
+    background-color: gray;
+    cursor: pointer;
+}

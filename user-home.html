@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Produtos</h1>
+    <section class="container-categoria">
+        <h2>
+            CATEGORIA
+            <hr>
+        </h2>
+        <div class="cards-container">
+            <section class="produto">
+                <div onclick="irAoProduto()" class="card"></div>
+                <footer>
+                    <figcaption class="nome-produto">
+                        Nome do produto66666666666666666
+                    </figcaption>
+                    <h3 class="preco">R$ 50,00</h3>
+                </footer>
+            </section>
+        </div>
+    </section>
+</body>
+</html>
+
+<script>
+    function irAoProduto() {
+        document.location.href="./produto.html"
+    }
+</script>
+
+<style>
+    .cards-container {
+        padding: 10px;
+        overflow: auto;
+        display: flex;
+        flex-direction: row;
+    }
+    .container-categoria h5 {
+        margin-bottom: 0;
+    }
+    .produto {
+        flex: 0 0 auto;
+        margin: 0 20px;
+    }
+    .nome-produto {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 170px;
+        font-size: 20px;
+    }
+    .preco {
+        margin: 0;
+    }
+</style>
