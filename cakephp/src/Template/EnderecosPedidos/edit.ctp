@@ -15,8 +15,8 @@
         ?></li>
         <li><?= $this->Html->link(__('List Enderecos Pedidos'), ['action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('List Pedidos'), ['controller' => 'Pedidos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Pedido'), ['controller' => 'Pedidos', 'action' => 'add']) ?></li>
-    </ul>
+         <!--<li><?php// $this->Html->link(__('New Pedido'), ['controller' => 'Pedidos', 'action' => 'add']) ?></li>-->
+         </ul>
 </nav>
 <div class="enderecosPedidos form large-9 medium-8 columns content">
     <?= $this->Form->create($enderecosPedido) ?>

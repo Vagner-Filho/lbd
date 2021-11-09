@@ -15,9 +15,9 @@
         ?></li>
         <li><?= $this->Html->link(__('List Pedidos'), ['action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('List Clientes'), ['controller' => 'Clientes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Cliente'), ['controller' => 'Clientes', 'action' => 'add']) ?></li>
+        <!--<li><?php// $this->Html->link(__('New Cliente'), ['controller' => 'Clientes', 'action' => 'add']) ?></li>-->
         <li><?= $this->Html->link(__('List Enderecos Pedidos'), ['controller' => 'EnderecosPedidos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Enderecos Pedido'), ['controller' => 'EnderecosPedidos', 'action' => 'add']) ?></li>
+        <!--<li><?php// $this->Html->link(__('New Enderecos Pedido'), ['controller' => 'EnderecosPedidos', 'action' => 'add']) ?></li>-->
         <li><?= $this->Html->link(__('List Produtos'), ['controller' => 'Produtos', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Produto'), ['controller' => 'Produtos', 'action' => 'add']) ?></li>
     </ul>

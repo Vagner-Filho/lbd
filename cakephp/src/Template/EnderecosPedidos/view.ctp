@@ -7,13 +7,13 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Enderecos Pedido'), ['action' => 'edit', $enderecosPedido->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Enderecos Pedido'), ['action' => 'delete', $enderecosPedido->id], ['confirm' => __('Are you sure you want to delete # {0}?', $enderecosPedido->id)]) ?> </li>
+        <!--<li><?php// $this->Html->link(__('Edit Enderecos Pedido'), ['action' => 'edit', $enderecosPedido->id]) ?> </li>-->
+        <!--<li><?php// $this->Form->postLink(__('Delete Enderecos Pedido'), ['action' => 'delete', $enderecosPedido->id], ['confirm' => __('Are you sure you want to delete # {0}?', $enderecosPedido->id)]) ?> </li>-->
         <li><?= $this->Html->link(__('List Enderecos Pedidos'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Enderecos Pedido'), ['action' => 'add']) ?> </li>
+        <!--<li><?php// $this->Html->link(__('New Enderecos Pedido'), ['action' => 'add']) ?> </li>-->
         <li><?= $this->Html->link(__('List Pedidos'), ['controller' => 'Pedidos', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Pedido'), ['controller' => 'Pedidos', 'action' => 'add']) ?> </li>
-    </ul>
+        <!--<li><?php// $this->Html->link(__('New Pedido'), ['controller' => 'Pedidos', 'action' => 'add']) ?></li>-->
+        </ul>
 </nav>
 <div class="enderecosPedidos view large-9 medium-8 columns content">
     <h3><?= h($enderecosPedido->id) ?></h3>

@@ -7,14 +7,14 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Pedido'), ['action' => 'edit', $pedido->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Pedido'), ['action' => 'delete', $pedido->id], ['confirm' => __('Are you sure you want to delete # {0}?', $pedido->id)]) ?> </li>
+        <!--<li><?php// $this->Html->link(__('Edit Pedido'), ['action' => 'edit', $pedido->id]) ?> </li>-->
+        <!--<li><?php// $this->Form->postLink(__('Delete Pedido'), ['action' => 'delete', $pedido->id], ['confirm' => __('Are you sure you want to delete # {0}?', $pedido->id)]) ?> </li>-->
         <li><?= $this->Html->link(__('List Pedidos'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Pedido'), ['action' => 'add']) ?> </li>
+        <!--<li><?php// $this->Html->link(__('New Pedido'), ['action' => 'add']) ?> </li>-->
         <li><?= $this->Html->link(__('List Clientes'), ['controller' => 'Clientes', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Cliente'), ['controller' => 'Clientes', 'action' => 'add']) ?> </li>
+        <!--<li><?php// $this->Html->link(__('New Cliente'), ['controller' => 'Clientes', 'action' => 'add']) ?> </li>-->
         <li><?= $this->Html->link(__('List Enderecos Pedidos'), ['controller' => 'EnderecosPedidos', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Enderecos Pedido'), ['controller' => 'EnderecosPedidos', 'action' => 'add']) ?> </li>
+        <!--<li><?php// $this->Html->link(__('New Enderecos Pedido'), ['controller' => 'EnderecosPedidos', 'action' => 'add']) ?> </li>-->
         <li><?= $this->Html->link(__('List Produtos'), ['controller' => 'Produtos', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Produto'), ['controller' => 'Produtos', 'action' => 'add']) ?> </li>
     </ul>
