@@ -13,6 +13,7 @@ use Cake\ORM\Entity;
  * @property string $senha
  *
  * @property \App\Model\Entity\EnderecosCliente[] $enderecos_clientes
+ * @property \App\Model\Entity\Pedido[] $pedidos
  */
 class Cliente extends Entity
 {
@@ -31,5 +32,6 @@ class Cliente extends Entity
         'email' => true,
         'senha' => true,
         'enderecos_clientes' => true,
+        'pedidos' => true,
     ];
 }

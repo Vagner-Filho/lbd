@@ -46,9 +46,7 @@
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
                 <th scope="col"><?= __('Preco Pedido') ?></th>
-                <th scope="col"><?= __('Item') ?></th>
                 <th scope="col"><?= __('Cliente Id') ?></th>
-                <th scope="col"><?= __('Produto Id') ?></th>
                 <th scope="col"><?= __('Enderecos Pedido Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -56,9 +54,7 @@
             <tr>
                 <td><?= h($pedidos->id) ?></td>
                 <td><?= h($pedidos->preco_pedido) ?></td>
-                <td><?= h($pedidos->item) ?></td>
                 <td><?= h($pedidos->cliente_id) ?></td>
-                <td><?= h($pedidos->produto_id) ?></td>
                 <td><?= h($pedidos->enderecos_pedido_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Pedidos', 'action' => 'view', $pedidos->id]) ?>

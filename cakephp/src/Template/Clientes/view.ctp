@@ -13,6 +13,8 @@
         <li><?= $this->Html->link(__('New Cliente'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Enderecos Clientes'), ['controller' => 'EnderecosClientes', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Enderecos Cliente'), ['controller' => 'EnderecosClientes', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Pedidos'), ['controller' => 'Pedidos', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Pedido'), ['controller' => 'Pedidos', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="clientes view large-9 medium-8 columns content">
@@ -64,6 +66,33 @@
                     <?= $this->Html->link(__('View'), ['controller' => 'EnderecosClientes', 'action' => 'view', $enderecosClientes->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'EnderecosClientes', 'action' => 'edit', $enderecosClientes->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['controller' => 'EnderecosClientes', 'action' => 'delete', $enderecosClientes->id], ['confirm' => __('Are you sure you want to delete # {0}?', $enderecosClientes->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Pedidos') ?></h4>
+        <?php if (!empty($cliente->pedidos)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th scope="col"><?= __('Id') ?></th>
+                <th scope="col"><?= __('Preco Pedido') ?></th>
+                <th scope="col"><?= __('Cliente Id') ?></th>
+                <th scope="col"><?= __('Enderecos Pedido Id') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($cliente->pedidos as $pedidos): ?>
+            <tr>
+                <td><?= h($pedidos->id) ?></td>
+                <td><?= h($pedidos->preco_pedido) ?></td>
+                <td><?= h($pedidos->cliente_id) ?></td>
+                <td><?= h($pedidos->enderecos_pedido_id) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Pedidos', 'action' => 'view', $pedidos->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Pedidos', 'action' => 'edit', $pedidos->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Pedidos', 'action' => 'delete', $pedidos->id], ['confirm' => __('Are you sure you want to delete # {0}?', $pedidos->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

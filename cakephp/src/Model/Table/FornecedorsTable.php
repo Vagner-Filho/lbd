@@ -7,20 +7,20 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Fornecedores Model
+ * Fornecedors Model
  *
  * @property \App\Model\Table\ProdutosTable&\Cake\ORM\Association\HasMany $Produtos
  *
- * @method \App\Model\Entity\Fornecedore get($primaryKey, $options = [])
- * @method \App\Model\Entity\Fornecedore newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Fornecedore[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Fornecedore|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Fornecedore saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Fornecedore patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Fornecedore[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Fornecedore findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\Fornecedor get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Fornecedor newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Fornecedor[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Fornecedor|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Fornecedor saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Fornecedor patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Fornecedor[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Fornecedor findOrCreate($search, callable $callback = null, $options = [])
  */
-class FornecedoresTable extends Table
+class FornecedorsTable extends Table
 {
     /**
      * Initialize method
@@ -32,12 +32,12 @@ class FornecedoresTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('fornecedores');
-        $this->setDisplayField('cnpj');
+        $this->setTable('fornecedors');
+        $this->setDisplayField('nome_fornecedor');
         $this->setPrimaryKey('id');
 
         $this->hasMany('Produtos', [
-            'foreignKey' => 'fornecedore_id',
+            'foreignKey' => 'fornecedor_id',
         ]);
     }
 

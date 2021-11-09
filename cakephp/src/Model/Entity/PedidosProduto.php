@@ -4,18 +4,16 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Pedido Entity
+ * PedidosProduto Entity
  *
  * @property int $id
- * @property float $preco_pedido
- * @property int $cliente_id
- * @property int $enderecos_pedido_id
+ * @property int $pedido_id
+ * @property int $produto_id
  *
- * @property \App\Model\Entity\Cliente $cliente
- * @property \App\Model\Entity\EnderecosPedido $enderecos_pedido
- * @property \App\Model\Entity\Produto[] $produtos
+ * @property \App\Model\Entity\Pedido $pedido
+ * @property \App\Model\Entity\Produto $produto
  */
-class Pedido extends Entity
+class PedidosProduto extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -27,11 +25,9 @@ class Pedido extends Entity
      * @var array
      */
     protected $_accessible = [
-        'preco_pedido' => true,
-        'cliente_id' => true,
-        'enderecos_pedido_id' => true,
-        'cliente' => true,
-        'enderecos_pedido' => true,
-        'produtos' => true,
+        'pedido_id' => true,
+        'produto_id' => true,
+        'pedido' => true,
+        'produto' => true,
     ];
 }

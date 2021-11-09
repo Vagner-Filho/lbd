@@ -10,7 +10,7 @@ use Cake\Validation\Validator;
  * Clientes Model
  *
  * @property \App\Model\Table\EnderecosClientesTable&\Cake\ORM\Association\HasMany $EnderecosClientes
- * @property &\Cake\ORM\Association\HasMany $Pedidos
+ * @property \App\Model\Table\PedidosTable&\Cake\ORM\Association\HasMany $Pedidos
  *
  * @method \App\Model\Entity\Cliente get($primaryKey, $options = [])
  * @method \App\Model\Entity\Cliente newEntity($data = null, array $options = [])
@@ -34,7 +34,7 @@ class ClientesTable extends Table
         parent::initialize($config);
 
         $this->setTable('clientes');
-        $this->setDisplayField('nome');
+        $this->setDisplayField('cpf');
         $this->setPrimaryKey('id');
 
         $this->hasMany('EnderecosClientes', [

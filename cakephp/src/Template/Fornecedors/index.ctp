@@ -1,19 +1,19 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Fornecedore[]|\Cake\Collection\CollectionInterface $fornecedores
+ * @var \App\Model\Entity\Fornecedor[]|\Cake\Collection\CollectionInterface $fornecedors
  */
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Fornecedore'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Fornecedor'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Produtos'), ['controller' => 'Produtos', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Produto'), ['controller' => 'Produtos', 'action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="fornecedores index large-9 medium-8 columns content">
-    <h3><?= __('Fornecedores') ?></h3>
+<div class="fornecedors index large-9 medium-8 columns content">
+    <h3><?= __('Fornecedors') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -25,16 +25,16 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($fornecedores as $fornecedore): ?>
+            <?php foreach ($fornecedors as $fornecedor): ?>
             <tr>
-                <td><?= $this->Number->format($fornecedore->id) ?></td>
-                <td><?= h($fornecedore->cnpj) ?></td>
-                <td><?= h($fornecedore->nome_fornecedor) ?></td>
-                <td><?= h($fornecedore->cep) ?></td>
+                <td><?= $this->Number->format($fornecedor->id) ?></td>
+                <td><?= h($fornecedor->cnpj) ?></td>
+                <td><?= h($fornecedor->nome_fornecedor) ?></td>
+                <td><?= h($fornecedor->cep) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $fornecedore->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $fornecedore->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $fornecedore->id], ['confirm' => __('Are you sure you want to delete # {0}?', $fornecedore->id)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $fornecedor->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $fornecedor->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $fornecedor->id], ['confirm' => __('Are you sure you want to delete # {0}?', $fornecedor->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

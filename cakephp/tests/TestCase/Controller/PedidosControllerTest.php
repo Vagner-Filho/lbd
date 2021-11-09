@@ -22,8 +22,9 @@ class PedidosControllerTest extends TestCase
     public $fixtures = [
         'app.Pedidos',
         'app.Clientes',
-        'app.Produtos',
         'app.EnderecosPedidos',
+        'app.Produtos',
+        'app.PedidosProdutos',
     ];
 
     /**

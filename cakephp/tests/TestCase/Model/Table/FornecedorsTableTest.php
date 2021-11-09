@@ -1,21 +1,21 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\PedidosTable;
+use App\Model\Table\FornecedorsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\PedidosTable Test Case
+ * App\Model\Table\FornecedorsTable Test Case
  */
-class PedidosTableTest extends TestCase
+class FornecedorsTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\PedidosTable
+     * @var \App\Model\Table\FornecedorsTable
      */
-    public $Pedidos;
+    public $Fornecedors;
 
     /**
      * Fixtures
@@ -23,9 +23,7 @@ class PedidosTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.Pedidos',
-        'app.Clientes',
-        'app.EnderecosPedidos',
+        'app.Fornecedors',
         'app.Produtos',
     ];
 
@@ -37,8 +35,8 @@ class PedidosTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Pedidos') ? [] : ['className' => PedidosTable::class];
-        $this->Pedidos = TableRegistry::getTableLocator()->get('Pedidos', $config);
+        $config = TableRegistry::getTableLocator()->exists('Fornecedors') ? [] : ['className' => FornecedorsTable::class];
+        $this->Fornecedors = TableRegistry::getTableLocator()->get('Fornecedors', $config);
     }
 
     /**
@@ -48,7 +46,7 @@ class PedidosTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Pedidos);
+        unset($this->Fornecedors);
 
         parent::tearDown();
     }

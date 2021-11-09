@@ -16,8 +16,8 @@
         <li><?= $this->Html->link(__('List Produtos'), ['action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('List Categorias'), ['controller' => 'Categorias', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Categoria'), ['controller' => 'Categorias', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Fornecedores'), ['controller' => 'Fornecedores', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Fornecedore'), ['controller' => 'Fornecedores', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Fornecedors'), ['controller' => 'Fornecedors', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Fornecedor'), ['controller' => 'Fornecedors', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Pedidos'), ['controller' => 'Pedidos', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Pedido'), ['controller' => 'Pedidos', 'action' => 'add']) ?></li>
     </ul>
@@ -30,7 +30,8 @@
             echo $this->Form->control('nome');
             echo $this->Form->control('preco_produto');
             echo $this->Form->control('categoria_id', ['options' => $categorias]);
-            echo $this->Form->control('fornecedore_id', ['options' => $fornecedores]);
+            echo $this->Form->control('fornecedor_id', ['options' => $fornecedors]);
+            echo $this->Form->control('pedidos._ids', ['options' => $pedidos]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

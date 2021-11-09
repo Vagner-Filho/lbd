@@ -10,8 +10,8 @@ use Cake\Validation\Validator;
  * Pedidos Model
  *
  * @property \App\Model\Table\ClientesTable&\Cake\ORM\Association\BelongsTo $Clientes
- * @property \App\Model\Table\ProdutosTable&\Cake\ORM\Association\BelongsTo $Produtos
  * @property \App\Model\Table\EnderecosPedidosTable&\Cake\ORM\Association\BelongsTo $EnderecosPedidos
+ * @property \App\Model\Table\ProdutosTable&\Cake\ORM\Association\BelongsToMany $Produtos
  *
  * @method \App\Model\Entity\Pedido get($primaryKey, $options = [])
  * @method \App\Model\Entity\Pedido newEntity($data = null, array $options = [])
@@ -42,13 +42,14 @@ class PedidosTable extends Table
             'foreignKey' => 'cliente_id',
             'joinType' => 'INNER',
         ]);
-        $this->belongsTo('Produtos', [
-            'foreignKey' => 'produto_id',
-            'joinType' => 'INNER',
-        ]);
         $this->belongsTo('EnderecosPedidos', [
             'foreignKey' => 'enderecos_pedido_id',
             'joinType' => 'INNER',
+        ]);
+        $this->belongsToMany('Produtos', [
+            'foreignKey' => 'pedido_id',
+            'targetForeignKey' => 'produto_id',
+            'joinTable' => 'pedidos_produtos',
         ]);
     }
 
@@ -69,12 +70,6 @@ class PedidosTable extends Table
             ->requirePresence('preco_pedido', 'create')
             ->notEmptyString('preco_pedido');
 
-        $validator
-            ->scalar('item')
-            ->maxLength('item', 200)
-            ->requirePresence('item', 'create')
-            ->notEmptyString('item');
-
         return $validator;
     }
 
@@ -88,7 +83,6 @@ class PedidosTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['cliente_id'], 'Clientes'));
-        $rules->add($rules->existsIn(['produto_id'], 'Produtos'));
         $rules->add($rules->existsIn(['enderecos_pedido_id'], 'EnderecosPedidos'));
 
         return $rules;

@@ -19,15 +19,15 @@ class ProdutosFixture extends TestFixture
         'nome' => ['type' => 'string', 'length' => 200, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'preco_produto' => ['type' => 'float', 'length' => null, 'precision' => null, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => ''],
         'categoria_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'fornecedore_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'fornecedor_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_indexes' => [
             'categoria_id' => ['type' => 'index', 'columns' => ['categoria_id'], 'length' => []],
-            'fornecedore_id' => ['type' => 'index', 'columns' => ['fornecedore_id'], 'length' => []],
+            'fornecedor_id' => ['type' => 'index', 'columns' => ['fornecedor_id'], 'length' => []],
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
             'produtos_ibfk_1' => ['type' => 'foreign', 'columns' => ['categoria_id'], 'references' => ['categorias', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
-            'produtos_ibfk_2' => ['type' => 'foreign', 'columns' => ['fornecedore_id'], 'references' => ['fornecedores', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'produtos_ibfk_2' => ['type' => 'foreign', 'columns' => ['fornecedor_id'], 'references' => ['fornecedors', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -48,7 +48,7 @@ class ProdutosFixture extends TestFixture
                 'nome' => 'Lorem ipsum dolor sit amet',
                 'preco_produto' => 1,
                 'categoria_id' => 1,
-                'fornecedore_id' => 1,
+                'fornecedor_id' => 1,
             ],
         ];
         parent::init();

@@ -10,8 +10,8 @@
         <li><?= $this->Html->link(__('New Produto'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Categorias'), ['controller' => 'Categorias', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Categoria'), ['controller' => 'Categorias', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Fornecedores'), ['controller' => 'Fornecedores', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Fornecedore'), ['controller' => 'Fornecedores', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Fornecedors'), ['controller' => 'Fornecedors', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Fornecedor'), ['controller' => 'Fornecedors', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Pedidos'), ['controller' => 'Pedidos', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Pedido'), ['controller' => 'Pedidos', 'action' => 'add']) ?></li>
     </ul>
@@ -25,7 +25,7 @@
                 <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('preco_produto') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('categoria_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('fornecedore_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('fornecedor_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -36,7 +36,7 @@
                 <td><?= h($produto->nome) ?></td>
                 <td><?= $this->Number->format($produto->preco_produto) ?></td>
                 <td><?= $produto->has('categoria') ? $this->Html->link($produto->categoria->id, ['controller' => 'Categorias', 'action' => 'view', $produto->categoria->id]) : '' ?></td>
-                <td><?= $produto->has('fornecedore') ? $this->Html->link($produto->fornecedore->id, ['controller' => 'Fornecedores', 'action' => 'view', $produto->fornecedore->id]) : '' ?></td>
+                <td><?= $produto->has('fornecedor') ? $this->Html->link($produto->fornecedor->id, ['controller' => 'Fornecedors', 'action' => 'view', $produto->fornecedor->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $produto->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $produto->id]) ?>

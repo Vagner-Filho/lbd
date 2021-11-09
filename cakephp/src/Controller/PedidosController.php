@@ -20,7 +20,7 @@ class PedidosController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Clientes', 'Produtos', 'EnderecosPedidos'],
+            'contain' => ['Clientes', 'EnderecosPedidos'],
         ];
         $pedidos = $this->paginate($this->Pedidos);
 
@@ -37,7 +37,7 @@ class PedidosController extends AppController
     public function view($id = null)
     {
         $pedido = $this->Pedidos->get($id, [
-            'contain' => ['Clientes', 'Produtos', 'EnderecosPedidos'],
+            'contain' => ['Clientes', 'EnderecosPedidos', 'Produtos'],
         ]);
 
         $this->set('pedido', $pedido);
@@ -61,9 +61,9 @@ class PedidosController extends AppController
             $this->Flash->error(__('The pedido could not be saved. Please, try again.'));
         }
         $clientes = $this->Pedidos->Clientes->find('list', ['limit' => 200]);
-        $produtos = $this->Pedidos->Produtos->find('list', ['limit' => 200]);
         $enderecosPedidos = $this->Pedidos->EnderecosPedidos->find('list', ['limit' => 200]);
-        $this->set(compact('pedido', 'clientes', 'produtos', 'enderecosPedidos'));
+        $produtos = $this->Pedidos->Produtos->find('list', ['limit' => 200]);
+        $this->set(compact('pedido', 'clientes', 'enderecosPedidos', 'produtos'));
     }
 
     /**
@@ -76,7 +76,7 @@ class PedidosController extends AppController
     public function edit($id = null)
     {
         $pedido = $this->Pedidos->get($id, [
-            'contain' => [],
+            'contain' => ['Produtos'],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $pedido = $this->Pedidos->patchEntity($pedido, $this->request->getData());
@@ -88,9 +88,9 @@ class PedidosController extends AppController
             $this->Flash->error(__('The pedido could not be saved. Please, try again.'));
         }
         $clientes = $this->Pedidos->Clientes->find('list', ['limit' => 200]);
-        $produtos = $this->Pedidos->Produtos->find('list', ['limit' => 200]);
         $enderecosPedidos = $this->Pedidos->EnderecosPedidos->find('list', ['limit' => 200]);
-        $this->set(compact('pedido', 'clientes', 'produtos', 'enderecosPedidos'));
+        $produtos = $this->Pedidos->Produtos->find('list', ['limit' => 200]);
+        $this->set(compact('pedido', 'clientes', 'enderecosPedidos', 'produtos'));
     }
 
     /**

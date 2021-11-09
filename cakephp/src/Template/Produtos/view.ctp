@@ -13,8 +13,8 @@
         <li><?= $this->Html->link(__('New Produto'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Categorias'), ['controller' => 'Categorias', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Categoria'), ['controller' => 'Categorias', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Fornecedores'), ['controller' => 'Fornecedores', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Fornecedore'), ['controller' => 'Fornecedores', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Fornecedors'), ['controller' => 'Fornecedors', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Fornecedor'), ['controller' => 'Fornecedors', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Pedidos'), ['controller' => 'Pedidos', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Pedido'), ['controller' => 'Pedidos', 'action' => 'add']) ?> </li>
     </ul>
@@ -31,8 +31,8 @@
             <td><?= $produto->has('categoria') ? $this->Html->link($produto->categoria->id, ['controller' => 'Categorias', 'action' => 'view', $produto->categoria->id]) : '' ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Fornecedore') ?></th>
-            <td><?= $produto->has('fornecedore') ? $this->Html->link($produto->fornecedore->id, ['controller' => 'Fornecedores', 'action' => 'view', $produto->fornecedore->id]) : '' ?></td>
+            <th scope="row"><?= __('Fornecedor') ?></th>
+            <td><?= $produto->has('fornecedor') ? $this->Html->link($produto->fornecedor->id, ['controller' => 'Fornecedors', 'action' => 'view', $produto->fornecedor->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>
@@ -50,9 +50,7 @@
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
                 <th scope="col"><?= __('Preco Pedido') ?></th>
-                <th scope="col"><?= __('Item') ?></th>
                 <th scope="col"><?= __('Cliente Id') ?></th>
-                <th scope="col"><?= __('Produto Id') ?></th>
                 <th scope="col"><?= __('Enderecos Pedido Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -60,9 +58,7 @@
             <tr>
                 <td><?= h($pedidos->id) ?></td>
                 <td><?= h($pedidos->preco_pedido) ?></td>
-                <td><?= h($pedidos->item) ?></td>
                 <td><?= h($pedidos->cliente_id) ?></td>
-                <td><?= h($pedidos->produto_id) ?></td>
                 <td><?= h($pedidos->enderecos_pedido_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Pedidos', 'action' => 'view', $pedidos->id]) ?>

@@ -10,10 +10,10 @@ use Cake\ORM\Entity;
  * @property string $nome
  * @property float $preco_produto
  * @property int $categoria_id
- * @property int $fornecedore_id
+ * @property int $fornecedor_id
  *
  * @property \App\Model\Entity\Categoria $categoria
- * @property \App\Model\Entity\Fornecedore $fornecedore
+ * @property \App\Model\Entity\Fornecedor $fornecedor
  * @property \App\Model\Entity\Pedido[] $pedidos
  */
 class Produto extends Entity
@@ -31,9 +31,9 @@ class Produto extends Entity
         'nome' => true,
         'preco_produto' => true,
         'categoria_id' => true,
-        'fornecedore_id' => true,
+        'fornecedor_id' => true,
         'categoria' => true,
-        'fornecedore' => true,
+        'fornecedor' => true,
         'pedidos' => true,
     ];
 }

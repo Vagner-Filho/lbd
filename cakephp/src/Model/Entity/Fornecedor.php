@@ -4,7 +4,7 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Fornecedore Entity
+ * Fornecedor Entity
  *
  * @property int $id
  * @property string $cnpj
@@ -13,7 +13,7 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\Produto[] $produtos
  */
-class Fornecedore extends Entity
+class Fornecedor extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

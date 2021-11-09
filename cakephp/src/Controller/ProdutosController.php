@@ -20,7 +20,7 @@ class ProdutosController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Categorias', 'Fornecedores'],
+            'contain' => ['Categorias', 'Fornecedors'],
         ];
         $produtos = $this->paginate($this->Produtos);
 
@@ -37,7 +37,7 @@ class ProdutosController extends AppController
     public function view($id = null)
     {
         $produto = $this->Produtos->get($id, [
-            'contain' => ['Categorias', 'Fornecedores', 'Pedidos'],
+            'contain' => ['Categorias', 'Fornecedors', 'Pedidos'],
         ]);
 
         $this->set('produto', $produto);
@@ -61,8 +61,9 @@ class ProdutosController extends AppController
             $this->Flash->error(__('The produto could not be saved. Please, try again.'));
         }
         $categorias = $this->Produtos->Categorias->find('list', ['limit' => 200]);
-        $fornecedores = $this->Produtos->Fornecedores->find('list', ['limit' => 200]);
-        $this->set(compact('produto', 'categorias', 'fornecedores'));
+        $fornecedors = $this->Produtos->Fornecedors->find('list', ['limit' => 200]);
+        $pedidos = $this->Produtos->Pedidos->find('list', ['limit' => 200]);
+        $this->set(compact('produto', 'categorias', 'fornecedors', 'pedidos'));
     }
 
     /**
@@ -75,7 +76,7 @@ class ProdutosController extends AppController
     public function edit($id = null)
     {
         $produto = $this->Produtos->get($id, [
-            'contain' => [],
+            'contain' => ['Pedidos'],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $produto = $this->Produtos->patchEntity($produto, $this->request->getData());
@@ -87,8 +88,9 @@ class ProdutosController extends AppController
             $this->Flash->error(__('The produto could not be saved. Please, try again.'));
         }
         $categorias = $this->Produtos->Categorias->find('list', ['limit' => 200]);
-        $fornecedores = $this->Produtos->Fornecedores->find('list', ['limit' => 200]);
-        $this->set(compact('produto', 'categorias', 'fornecedores'));
+        $fornecedors = $this->Produtos->Fornecedors->find('list', ['limit' => 200]);
+        $pedidos = $this->Produtos->Pedidos->find('list', ['limit' => 200]);
+        $this->set(compact('produto', 'categorias', 'fornecedors', 'pedidos'));
     }
 
     /**

@@ -36,7 +36,7 @@
                 <th scope="col"><?= __('Nome') ?></th>
                 <th scope="col"><?= __('Preco Produto') ?></th>
                 <th scope="col"><?= __('Categoria Id') ?></th>
-                <th scope="col"><?= __('Fornecedore Id') ?></th>
+                <th scope="col"><?= __('Fornecedor Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($categoria->produtos as $produtos): ?>
@@ -45,7 +45,7 @@
                 <td><?= h($produtos->nome) ?></td>
                 <td><?= h($produtos->preco_produto) ?></td>
                 <td><?= h($produtos->categoria_id) ?></td>
-                <td><?= h($produtos->fornecedore_id) ?></td>
+                <td><?= h($produtos->fornecedor_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Produtos', 'action' => 'view', $produtos->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Produtos', 'action' => 'edit', $produtos->id]) ?>

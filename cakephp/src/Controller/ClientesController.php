@@ -34,7 +34,7 @@ class ClientesController extends AppController
     public function view($id = null)
     {
         $cliente = $this->Clientes->get($id, [
-            'contain' => ['EnderecosClientes'],
+            'contain' => ['EnderecosClientes', 'Pedidos'],
         ]);
 
         $this->set('cliente', $cliente);
