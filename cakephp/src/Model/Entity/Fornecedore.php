@@ -10,6 +10,8 @@ use Cake\ORM\Entity;
  * @property string $cnpj
  * @property string $nome_fornecedor
  * @property string $cep
+ *
+ * @property \App\Model\Entity\Produto[] $produtos
  */
 class Fornecedore extends Entity
 {
@@ -26,5 +28,6 @@ class Fornecedore extends Entity
         'cnpj' => true,
         'nome_fornecedor' => true,
         'cep' => true,
+        'produtos' => true,
     ];
 }

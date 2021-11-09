@@ -11,11 +11,11 @@ use Cake\ORM\Entity;
  * @property string $item
  * @property int $cliente_id
  * @property int $produto_id
- * @property int $endereco_id
+ * @property int $enderecos_pedido_id
  *
  * @property \App\Model\Entity\Cliente $cliente
  * @property \App\Model\Entity\Produto $produto
- * @property \App\Model\Entity\Endereco $endereco
+ * @property \App\Model\Entity\EnderecosPedido $enderecos_pedido
  */
 class Pedido extends Entity
 {
@@ -33,9 +33,9 @@ class Pedido extends Entity
         'item' => true,
         'cliente_id' => true,
         'produto_id' => true,
-        'endereco_id' => true,
+        'enderecos_pedido_id' => true,
         'cliente' => true,
         'produto' => true,
-        'endereco' => true,
+        'enderecos_pedido' => true,
     ];
 }

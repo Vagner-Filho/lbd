@@ -9,6 +9,8 @@ use Cake\Validation\Validator;
 /**
  * EnderecosPedidos Model
  *
+ * @property \App\Model\Table\PedidosTable&\Cake\ORM\Association\HasMany $Pedidos
+ *
  * @method \App\Model\Entity\EnderecosPedido get($primaryKey, $options = [])
  * @method \App\Model\Entity\EnderecosPedido newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\EnderecosPedido[] newEntities(array $data, array $options = [])
@@ -33,6 +35,10 @@ class EnderecosPedidosTable extends Table
         $this->setTable('enderecos_pedidos');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+
+        $this->hasMany('Pedidos', [
+            'foreignKey' => 'enderecos_pedido_id',
+        ]);
     }
 
     /**

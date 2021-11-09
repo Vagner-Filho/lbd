@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * Clientes Model
  *
  * @property \App\Model\Table\EnderecosClientesTable&\Cake\ORM\Association\HasMany $EnderecosClientes
+ * @property &\Cake\ORM\Association\HasMany $Pedidos
  *
  * @method \App\Model\Entity\Cliente get($primaryKey, $options = [])
  * @method \App\Model\Entity\Cliente newEntity($data = null, array $options = [])
@@ -37,6 +38,9 @@ class ClientesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->hasMany('EnderecosClientes', [
+            'foreignKey' => 'cliente_id',
+        ]);
+        $this->hasMany('Pedidos', [
             'foreignKey' => 'cliente_id',
         ]);
     }

@@ -26,7 +26,7 @@ class PedidosTableTest extends TestCase
         'app.Pedidos',
         'app.Clientes',
         'app.Produtos',
-        'app.Enderecos',
+        'app.EnderecosPedidos',
     ];
 
     /**

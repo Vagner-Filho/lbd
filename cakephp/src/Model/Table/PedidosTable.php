@@ -11,7 +11,7 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\ClientesTable&\Cake\ORM\Association\BelongsTo $Clientes
  * @property \App\Model\Table\ProdutosTable&\Cake\ORM\Association\BelongsTo $Produtos
- * @property \App\Model\Table\EnderecosTable&\Cake\ORM\Association\BelongsTo $Enderecos
+ * @property \App\Model\Table\EnderecosPedidosTable&\Cake\ORM\Association\BelongsTo $EnderecosPedidos
  *
  * @method \App\Model\Entity\Pedido get($primaryKey, $options = [])
  * @method \App\Model\Entity\Pedido newEntity($data = null, array $options = [])
@@ -46,8 +46,8 @@ class PedidosTable extends Table
             'foreignKey' => 'produto_id',
             'joinType' => 'INNER',
         ]);
-        $this->belongsTo('Enderecos', [
-            'foreignKey' => 'endereco_id',
+        $this->belongsTo('EnderecosPedidos', [
+            'foreignKey' => 'enderecos_pedido_id',
             'joinType' => 'INNER',
         ]);
     }
@@ -89,7 +89,7 @@ class PedidosTable extends Table
     {
         $rules->add($rules->existsIn(['cliente_id'], 'Clientes'));
         $rules->add($rules->existsIn(['produto_id'], 'Produtos'));
-        $rules->add($rules->existsIn(['endereco_id'], 'Enderecos'));
+        $rules->add($rules->existsIn(['enderecos_pedido_id'], 'EnderecosPedidos'));
 
         return $rules;
     }

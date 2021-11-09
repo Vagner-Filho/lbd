@@ -11,6 +11,8 @@ use Cake\ORM\Entity;
  * @property string $rua
  * @property string $cidade
  * @property string $estado
+ *
+ * @property \App\Model\Entity\Pedido[] $pedidos
  */
 class EnderecosPedido extends Entity
 {
@@ -28,5 +30,6 @@ class EnderecosPedido extends Entity
         'rua' => true,
         'cidade' => true,
         'estado' => true,
+        'pedidos' => true,
     ];
 }

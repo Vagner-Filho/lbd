@@ -21,6 +21,7 @@ class EnderecosPedidosControllerTest extends TestCase
      */
     public $fixtures = [
         'app.EnderecosPedidos',
+        'app.Pedidos',
     ];
 
     /**

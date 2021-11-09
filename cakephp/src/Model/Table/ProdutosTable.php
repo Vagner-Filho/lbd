@@ -10,7 +10,8 @@ use Cake\Validation\Validator;
  * Produtos Model
  *
  * @property \App\Model\Table\CategoriasTable&\Cake\ORM\Association\BelongsTo $Categorias
- * @property &\Cake\ORM\Association\BelongsTo $Fornecedores
+ * @property \App\Model\Table\FornecedoresTable&\Cake\ORM\Association\BelongsTo $Fornecedores
+ * @property \App\Model\Table\PedidosTable&\Cake\ORM\Association\HasMany $Pedidos
  *
  * @method \App\Model\Entity\Produto get($primaryKey, $options = [])
  * @method \App\Model\Entity\Produto newEntity($data = null, array $options = [])
@@ -34,7 +35,7 @@ class ProdutosTable extends Table
         parent::initialize($config);
 
         $this->setTable('produtos');
-        $this->setDisplayField('nome_produto');
+        $this->setDisplayField('nome');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Categorias', [
@@ -42,8 +43,11 @@ class ProdutosTable extends Table
             'joinType' => 'INNER',
         ]);
         $this->belongsTo('Fornecedores', [
-            'foreignKey' => 'fornecedor_id',
+            'foreignKey' => 'fornecedore_id',
             'joinType' => 'INNER',
+        ]);
+        $this->hasMany('Pedidos', [
+            'foreignKey' => 'produto_id',
         ]);
     }
 
@@ -83,7 +87,7 @@ class ProdutosTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['categoria_id'], 'Categorias'));
-        $rules->add($rules->existsIn(['fornecedor_id'], 'Fornecedores'));
+        $rules->add($rules->existsIn(['fornecedore_id'], 'Fornecedores'));
 
         return $rules;
     }

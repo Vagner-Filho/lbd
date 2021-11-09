@@ -34,7 +34,7 @@ class EnderecosPedidosController extends AppController
     public function view($id = null)
     {
         $enderecosPedido = $this->EnderecosPedidos->get($id, [
-            'contain' => [],
+            'contain' => ['Pedidos'],
         ]);
 
         $this->set('enderecosPedido', $enderecosPedido);

@@ -10,8 +10,6 @@
         <li><?= $this->Html->link(__('New Categoria'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Produtos'), ['controller' => 'Produtos', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Produto'), ['controller' => 'Produtos', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Fornecedores'), ['controller' => 'Fornecedores', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Fornecedores'), ['controller' => 'Fornecedores', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="categorias index large-9 medium-8 columns content">

@@ -24,6 +24,7 @@ class EnderecosPedidosTableTest extends TestCase
      */
     public $fixtures = [
         'app.EnderecosPedidos',
+        'app.Pedidos',
     ];
 
     /**

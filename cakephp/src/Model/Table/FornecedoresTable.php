@@ -9,6 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Fornecedores Model
  *
+ * @property \App\Model\Table\ProdutosTable&\Cake\ORM\Association\HasMany $Produtos
+ *
  * @method \App\Model\Entity\Fornecedore get($primaryKey, $options = [])
  * @method \App\Model\Entity\Fornecedore newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Fornecedore[] newEntities(array $data, array $options = [])
@@ -31,8 +33,12 @@ class FornecedoresTable extends Table
         parent::initialize($config);
 
         $this->setTable('fornecedores');
-        $this->setDisplayField('nome_fornecedor');
+        $this->setDisplayField('cnpj');
         $this->setPrimaryKey('id');
+
+        $this->hasMany('Produtos', [
+            'foreignKey' => 'fornecedore_id',
+        ]);
     }
 
     /**

@@ -24,6 +24,7 @@ class FornecedoresTableTest extends TestCase
      */
     public $fixtures = [
         'app.Fornecedores',
+        'app.Produtos',
     ];
 
     /**

@@ -30,7 +30,7 @@
             <?php foreach ($enderecosClientes as $enderecosCliente): ?>
             <tr>
                 <td><?= $this->Number->format($enderecosCliente->id) ?></td>
-                <td><?= $enderecosCliente->has('cliente') ? $this->Html->link($enderecosCliente->cliente->nome, ['controller' => 'Clientes', 'action' => 'view', $enderecosCliente->cliente->id]) : '' ?></td>
+                <td><?= $enderecosCliente->has('cliente') ? $this->Html->link($enderecosCliente->cliente->id, ['controller' => 'Clientes', 'action' => 'view', $enderecosCliente->cliente->id]) : '' ?></td>
                 <td><?= $this->Number->format($enderecosCliente->numero) ?></td>
                 <td><?= h($enderecosCliente->rua) ?></td>
                 <td><?= h($enderecosCliente->cidade) ?></td>

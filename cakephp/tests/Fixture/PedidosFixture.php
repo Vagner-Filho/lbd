@@ -20,9 +20,17 @@ class PedidosFixture extends TestFixture
         'item' => ['type' => 'string', 'length' => 200, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'cliente_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'produto_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'endereco_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'enderecos_pedido_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        '_indexes' => [
+            'cliente_id' => ['type' => 'index', 'columns' => ['cliente_id'], 'length' => []],
+            'produto_id' => ['type' => 'index', 'columns' => ['produto_id'], 'length' => []],
+            'enderecos_pedido_id' => ['type' => 'index', 'columns' => ['enderecos_pedido_id'], 'length' => []],
+        ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
+            'pedidos_ibfk_1' => ['type' => 'foreign', 'columns' => ['cliente_id'], 'references' => ['clientes', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'pedidos_ibfk_2' => ['type' => 'foreign', 'columns' => ['produto_id'], 'references' => ['produtos', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'pedidos_ibfk_3' => ['type' => 'foreign', 'columns' => ['enderecos_pedido_id'], 'references' => ['enderecos_pedidos', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -44,7 +52,7 @@ class PedidosFixture extends TestFixture
                 'item' => 'Lorem ipsum dolor sit amet',
                 'cliente_id' => 1,
                 'produto_id' => 1,
-                'endereco_id' => 1,
+                'enderecos_pedido_id' => 1,
             ],
         ];
         parent::init();

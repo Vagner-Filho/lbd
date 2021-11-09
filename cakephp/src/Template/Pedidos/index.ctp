@@ -12,6 +12,8 @@
         <li><?= $this->Html->link(__('New Cliente'), ['controller' => 'Clientes', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Produtos'), ['controller' => 'Produtos', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Produto'), ['controller' => 'Produtos', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Enderecos Pedidos'), ['controller' => 'EnderecosPedidos', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Enderecos Pedido'), ['controller' => 'EnderecosPedidos', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="pedidos index large-9 medium-8 columns content">
@@ -24,7 +26,7 @@
                 <th scope="col"><?= $this->Paginator->sort('item') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('cliente_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('produto_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('endereco_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('enderecos_pedido_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -34,9 +36,9 @@
                 <td><?= $this->Number->format($pedido->id) ?></td>
                 <td><?= $this->Number->format($pedido->preco_pedido) ?></td>
                 <td><?= h($pedido->item) ?></td>
-                <td><?= $pedido->has('cliente') ? $this->Html->link($pedido->cliente->nome, ['controller' => 'Clientes', 'action' => 'view', $pedido->cliente->id]) : '' ?></td>
-                <td><?= $pedido->has('produto') ? $this->Html->link($pedido->produto->nome_produto, ['controller' => 'Produtos', 'action' => 'view', $pedido->produto->id]) : '' ?></td>
-                <td><?= $this->Number->format($pedido->endereco_id) ?></td>
+                <td><?= $pedido->has('cliente') ? $this->Html->link($pedido->cliente->id, ['controller' => 'Clientes', 'action' => 'view', $pedido->cliente->id]) : '' ?></td>
+                <td><?= $pedido->has('produto') ? $this->Html->link($pedido->produto->id, ['controller' => 'Produtos', 'action' => 'view', $pedido->produto->id]) : '' ?></td>
+                <td><?= $pedido->has('enderecos_pedido') ? $this->Html->link($pedido->enderecos_pedido->id, ['controller' => 'EnderecosPedidos', 'action' => 'view', $pedido->enderecos_pedido->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $pedido->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $pedido->id]) ?>

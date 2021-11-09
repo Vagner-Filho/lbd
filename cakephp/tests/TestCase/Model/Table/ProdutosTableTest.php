@@ -26,6 +26,7 @@ class ProdutosTableTest extends TestCase
         'app.Produtos',
         'app.Categorias',
         'app.Fornecedores',
+        'app.Pedidos',
     ];
 
     /**

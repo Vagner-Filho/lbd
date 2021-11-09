@@ -23,7 +23,7 @@ class PedidosControllerTest extends TestCase
         'app.Pedidos',
         'app.Clientes',
         'app.Produtos',
-        'app.Enderecos',
+        'app.EnderecosPedidos',
     ];
 
     /**

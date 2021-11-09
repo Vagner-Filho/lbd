@@ -20,7 +20,7 @@ class PedidosController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Clientes', 'Produtos', 'Enderecos'],
+            'contain' => ['Clientes', 'Produtos', 'EnderecosPedidos'],
         ];
         $pedidos = $this->paginate($this->Pedidos);
 
@@ -37,7 +37,7 @@ class PedidosController extends AppController
     public function view($id = null)
     {
         $pedido = $this->Pedidos->get($id, [
-            'contain' => ['Clientes', 'Produtos', 'Enderecos'],
+            'contain' => ['Clientes', 'Produtos', 'EnderecosPedidos'],
         ]);
 
         $this->set('pedido', $pedido);
@@ -62,8 +62,8 @@ class PedidosController extends AppController
         }
         $clientes = $this->Pedidos->Clientes->find('list', ['limit' => 200]);
         $produtos = $this->Pedidos->Produtos->find('list', ['limit' => 200]);
-        $enderecos = $this->Pedidos->Enderecos->find('list', ['limit' => 200]);
-        $this->set(compact('pedido', 'clientes', 'produtos', 'enderecos'));
+        $enderecosPedidos = $this->Pedidos->EnderecosPedidos->find('list', ['limit' => 200]);
+        $this->set(compact('pedido', 'clientes', 'produtos', 'enderecosPedidos'));
     }
 
     /**
@@ -89,8 +89,8 @@ class PedidosController extends AppController
         }
         $clientes = $this->Pedidos->Clientes->find('list', ['limit' => 200]);
         $produtos = $this->Pedidos->Produtos->find('list', ['limit' => 200]);
-        $enderecos = $this->Pedidos->Enderecos->find('list', ['limit' => 200]);
-        $this->set(compact('pedido', 'clientes', 'produtos', 'enderecos'));
+        $enderecosPedidos = $this->Pedidos->EnderecosPedidos->find('list', ['limit' => 200]);
+        $this->set(compact('pedido', 'clientes', 'produtos', 'enderecosPedidos'));
     }
 
     /**

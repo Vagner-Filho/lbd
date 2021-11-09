@@ -15,6 +15,8 @@
         <li><?= $this->Html->link(__('New Cliente'), ['controller' => 'Clientes', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Produtos'), ['controller' => 'Produtos', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Produto'), ['controller' => 'Produtos', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Enderecos Pedidos'), ['controller' => 'EnderecosPedidos', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Enderecos Pedido'), ['controller' => 'EnderecosPedidos', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="pedidos view large-9 medium-8 columns content">
@@ -26,11 +28,15 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Cliente') ?></th>
-            <td><?= $pedido->has('cliente') ? $this->Html->link($pedido->cliente->nome, ['controller' => 'Clientes', 'action' => 'view', $pedido->cliente->id]) : '' ?></td>
+            <td><?= $pedido->has('cliente') ? $this->Html->link($pedido->cliente->id, ['controller' => 'Clientes', 'action' => 'view', $pedido->cliente->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Produto') ?></th>
-            <td><?= $pedido->has('produto') ? $this->Html->link($pedido->produto->nome_produto, ['controller' => 'Produtos', 'action' => 'view', $pedido->produto->id]) : '' ?></td>
+            <td><?= $pedido->has('produto') ? $this->Html->link($pedido->produto->id, ['controller' => 'Produtos', 'action' => 'view', $pedido->produto->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Enderecos Pedido') ?></th>
+            <td><?= $pedido->has('enderecos_pedido') ? $this->Html->link($pedido->enderecos_pedido->id, ['controller' => 'EnderecosPedidos', 'action' => 'view', $pedido->enderecos_pedido->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>
@@ -39,10 +45,6 @@
         <tr>
             <th scope="row"><?= __('Preco Pedido') ?></th>
             <td><?= $this->Number->format($pedido->preco_pedido) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Endereco Id') ?></th>
-            <td><?= $this->Number->format($pedido->endereco_id) ?></td>
         </tr>
     </table>
 </div>

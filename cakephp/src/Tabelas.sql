@@ -1,4 +1,3 @@
-
 CREATE TABLE `fornecedores` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cnpj` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
@@ -19,8 +18,10 @@ CREATE TABLE `produtos` (
   `nome` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `preco_produto` double NOT NULL,
   `categoria_id` int(11) NOT NULL,
-  `fornecedor_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `fornecedore_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`categoria_id`) REFERENCES categorias(`id`),
+  FOREIGN KEY (`fornecedore_id`) REFERENCES fornecedores(`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `clientes` (
@@ -41,7 +42,8 @@ CREATE TABLE `enderecos_clientes` (
   `rua` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `cidade` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `estado` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`cliente_id`) REFERENCES clientes(`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `enderecos_pedidos` (
@@ -59,7 +61,9 @@ CREATE TABLE `pedidos` (
   `item` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `cliente_id` int(11) NOT NULL,
   `produto_id` int(11) NOT NULL,
-  `endereco_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `enderecos_pedido_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`cliente_id`) REFERENCES clientes(`id`),
+  FOREIGN KEY (`produto_id`) REFERENCES produtos(`id`),
+  FOREIGN KEY (`enderecos_pedido_id`) REFERENCES enderecos_pedidos(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-

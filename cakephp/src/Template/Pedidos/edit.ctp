@@ -18,6 +18,8 @@
         <li><?= $this->Html->link(__('New Cliente'), ['controller' => 'Clientes', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Produtos'), ['controller' => 'Produtos', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Produto'), ['controller' => 'Produtos', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Enderecos Pedidos'), ['controller' => 'EnderecosPedidos', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Enderecos Pedido'), ['controller' => 'EnderecosPedidos', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="pedidos form large-9 medium-8 columns content">
@@ -29,7 +31,7 @@
             echo $this->Form->control('item');
             echo $this->Form->control('cliente_id', ['options' => $clientes]);
             echo $this->Form->control('produto_id', ['options' => $produtos]);
-            echo $this->Form->control('endereco_id');
+            echo $this->Form->control('enderecos_pedido_id', ['options' => $enderecosPedidos]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
