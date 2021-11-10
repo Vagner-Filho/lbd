@@ -7,12 +7,74 @@ CREATE TABLE `fornecedors` (
   UNIQUE KEY `cnpj` (`cnpj`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE fornecedores_log (
+  id_fornecedor int(11),
+  cnpj varchar(15),
+  old_nome_fornecedor varchar(200),
+  new_nome_fornecedor varchar(200),
+  old_cep int(15),
+  new_cep int(15),
+  tipo char(1),
+  CHECK (tipo IN ('U', 'D'))
+)
+
+CREATE OR REPLACE FUNCTION fornecedoreslog()
+RETURNS TRIGGER AS $$
+  DECLARE
+    triggered_when timestamp := now()
+  BEGIN
+    SET TIMEZONE = 'America/Campo_grande'
+      CASE
+        WHEN TG_OP = 'UPDATE' THEN
+          INSERT INTO fornecedores_log VALUES (new.id, new.cnpj, old.nome_fornecedor, new.nome_fornecedor, old.cep, new.cep, 'U')
+        WHEN TG_OP = 'DELETE' THEN
+          INSERT INTO fornecedores_log VALUES (old.id, old.cnpj, old.nome_fornecedor, null, old.cep, null, 'D')
+      END CASE;
+    RETURN NEW;
+  END;
+$$ LANGUAGE PLPGSQL; -- Não tenho certeza se é essa language pra rodar no cake, e nem se a sintaxe acima funcionará (sintaxe do postgre)
+
+CREATE OR REPLACE TRIGGER fornecedoreslog
+  AFTER DELETE OR UPDATE OF nome_fornecedor OR cep ON fornecedors FOR EACH ROW
+  EXECUTE FUNCTION fornecedoreslog();
+
 
 CREATE TABLE `categorias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome_categoria` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE categorias_log (
+  id int(11),
+  old_nome_categoria varchar(200),
+  new_nome_categoria varchar(200),
+  tipo char(1),
+  CHECK (tipo IN ('U', 'D'))
+)
+
+CREATE OR REPLACE FUNCTION categoriaslog()
+RETURNS TRIGGER AS $$
+  DECLARE
+    triggered_when timestamp := now()
+  BEGIN
+    SET TIMEZONE = 'America/Campo_grande'
+      CASE
+        WHEN TG_OP = 'UPDATE' THEN
+          IF new.nome_categoria = ' ' THEN
+            UPDATE categorias SET nome_categoria = old.nome_categoria WHERE nome_categoria = new.nome_categoria;
+          END IF;
+          INSERT INTO categorias_log VALUES (new.id, old.nome_categoria, new.nome_categoria, 'U')
+        WHEN TG_OP = 'DELETE' THEN
+          INSERT INTO categorias_log VALUES (old.id, old.nome_categoria, null, 'D')
+      END CASE;
+    RETURN NEW;
+  END;
+$$ LANGUAGE PLPGSQL;
+
+CREATE OR REPLACE TRIGGER categoriaslog
+  AFTER DELETE OR UPDATE OF nome_categoria ON categorias FOR EACH ROW
+  EXECUTE FUNCTION categoriaslog(); 
 
 
 CREATE TABLE `produtos` (
@@ -26,6 +88,42 @@ CREATE TABLE `produtos` (
   FOREIGN KEY (`fornecedor_id`) REFERENCES fornecedors(`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE produtos_log (
+  id int(11),
+  nome varchar(200),
+  old_preco_produto double,
+  new_preco_produto double,
+  categoria_id int(11),
+  old_fornecedor_id int(11),
+  new_fornecedor_id int(11),
+  data_alteracao timestamp,
+  tipo char(1),
+  CHECK (tipo IN ('U', 'D'))
+)
+
+CREATE OR REPLACE FUNCTION produtoslog()
+RETURNS TRIGGER AS $$
+  DECLARE
+    triggered_when timestamp := now()
+  BEGIN
+    SET TIMEZONE = 'America/Campo_grande'
+      CASE
+        WHEN TG_OP = 'UPDATE' THEN
+          IF new.preco_produto = 0 THEN
+            UPDATE produtos SET preco_produto = old.preco_produto WHERE preco_produto = new.preco_produto;
+          END IF;
+          INSERT INTO produtos_log VALUES (old.id, old.nome, old.old_preco_produto, new.new_preco_produto, old.categoria_id, old.old_fornecedor_id, new.new_fornecedor_id, triggered_when, 'U')
+        WHEN TG_OP = 'DELETE' THEN
+          INSERT INTO produtos_log VALUES (old.id, old.nome, old.old_preco_produto, null, old.categoria_id, old.old_fornecedor_id, null, triggered_when, 'D')
+      END CASE;
+    RETURN NEW;
+  END;
+$$ LANGUAGE PLPGSQL;
+
+CREATE OR REPLACE TRIGGER produtoslog
+  AFTER DELETE OR UPDATE OF preco_produto OR fornecedor_id ON produtos FOR EACH ROW
+  EXECUTE FUNCTION produtoslog(); 
+
 CREATE TABLE `clientes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cpf` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
@@ -37,6 +135,40 @@ CREATE TABLE `clientes` (
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE clientes_log (
+  id int(11),
+  cpf varchar(200),
+  old_nome varchar(200),
+  new_nome varchar(200),
+  email varchar(200),
+  senha varchar(200),
+  data_alteracao timestamp,
+  tipo char(1),
+  CHECK (tipo IN ('D', 'U'))
+)
+
+CREATE OR REPLACE FUNCTION clienteslog()
+RETURNS TRIGGER AS $$
+  DECLARE
+    triggered_when timestamp := now()
+  BEGIN
+    SET TIMEZONE = 'America/Campo_grande'
+      CASE
+        WHEN TG_OP = 'UPDATE' THEN
+          IF new.nome = ' ' THEN
+            UPDATE clientes SET nome = old.nome WHERE nome = new.nome;
+          END IF;
+          INSERT INTO clientes_log VALUES (old.id, old.nome, new.nome, old.email, old.senha, triggered_when, 'U')
+        WHEN TG_OP = 'DELETE' THEN
+          INSERT INTO clientes_log VALUES (old.id, old.nome, null, old.email, old.senha, triggered_when, 'D')
+      END CASE;
+    RETURN NEW;
+  END;
+$$ LANGUAGE PLPGSQL;
+
+CREATE OR REPLACE TRIGGER clienteslog
+  AFTER DELETE OR UPDATE OF nome ON clientes FOR EACH ROW
+  EXECUTE FUNCTION clienteslog(); 
 
 CREATE TABLE `enderecos_clientes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
