@@ -177,14 +177,22 @@ CREATE OR REPLACE TABLE produtos_log (
 
 /*TRIGGERS MYSQL*/
 DELIMITER $
-CREATE OR REPLACE TRIGGER produtos_log_delete
+CREATE OR REPLACE TRIGGER produtos_log_afterDelete
 AFTER DELETE ON produtos FOR EACH ROW
     BEGIN
         DECLARE triggered_when timestamp;
         SET triggered_when = now();
         INSERT INTO produtos_log VALUES (old.id, old.nome, old.preco_produto, null, old.categoria_id, old.fornecedor_id, null, triggered_when, 'D');
 END $
+/*
+$
+CREATE OR REPLACE TRIGGER produtos_log_beforeDelete
+BEFORE DELETE ON produtos FOR EACH ROW
+    BEGIN
+        DELETE FROM pedidos_produtos WHERE produto_id = old.id;
 
+END $
+*/
 $
 CREATE OR REPLACE TRIGGER produtos_log_update
 AFTER UPDATE ON produtos FOR EACH ROW
@@ -369,10 +377,10 @@ CREATE OR REPLACE TABLE `pedidos` (
 CREATE OR REPLACE TABLE `pedidos_produtos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pedido_id` int(11) NOT NULL,
-  `produto_id` int(11) NOT NULL,
+  `produto_id` int(11),
   PRIMARY KEY (`id`),
   FOREIGN KEY (`pedido_id`) REFERENCES pedidos(`id`),
-  FOREIGN KEY (`produto_id`) REFERENCES produtos(`id`)
+  FOREIGN KEY (`produto_id`) REFERENCES produtos(`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
