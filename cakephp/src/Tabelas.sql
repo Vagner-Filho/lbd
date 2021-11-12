@@ -44,7 +44,19 @@ AFTER DELETE ON fornecedors FOR EACH ROW
         SET time_zone = 'America/Campo_grande';
         SET triggered_when = now();
         INSERT INTO fornecedors_log VALUES (old.id, old.cnpj, old.nome_fornecedor, null, old.cep, null, triggered_when, 'D');
+
+        -- Declaração para remover produtos do fornecedor exclúido
+        DELETE FROM produtos AS p WHERE p.fornecedor_id = old.id;
 END $ DELIMITER ;
+
+-- Trigger que usei para testar a declaração de delete acima
+-- delimiter $
+-- CREATE TRIGGER lbd.fornecedors_log_delete
+-- BEFORE DELETE ON lbd.fornecedors FOR EACH ROW
+-- 	BEGIN
+--         DELETE FROM lbd.produtos AS p WHERE p.fornecedor_id = old.id;
+-- 	END;
+-- $
 
 
 /*TRIGGERS POSTRESQL*/
