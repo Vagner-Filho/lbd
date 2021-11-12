@@ -30,7 +30,7 @@
             <tr>
                 <td><?= $this->Number->format($pedidosProduto->id) ?></td>
                 <td><?= $pedidosProduto->has('pedido') ? $this->Html->link($pedidosProduto->pedido->id, ['controller' => 'Pedidos', 'action' => 'view', $pedidosProduto->pedido->id]) : '' ?></td>
-                <td><?= $pedidosProduto->has('produto') ? $this->Html->link($pedidosProduto->produto->id, ['controller' => 'Produtos', 'action' => 'view', $pedidosProduto->produto->id]) : '' ?></td>
+                <td><?= $pedidosProduto->has('produto') ? $this->Html->link($pedidosProduto->produto->nome, ['controller' => 'Produtos', 'action' => 'view', $pedidosProduto->produto->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $pedidosProduto->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $pedidosProduto->id]) ?>

@@ -24,7 +24,7 @@
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Cliente') ?></th>
-            <td><?= $pedido->has('cliente') ? $this->Html->link($pedido->cliente->id, ['controller' => 'Clientes', 'action' => 'view', $pedido->cliente->id]) : '' ?></td>
+            <td><?= $pedido->has('cliente') ? $this->Html->link($pedido->cliente->cpf, ['controller' => 'Clientes', 'action' => 'view', $pedido->cliente->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Enderecos Pedido') ?></th>

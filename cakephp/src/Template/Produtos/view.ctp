@@ -28,11 +28,11 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Categoria') ?></th>
-            <td><?= $produto->has('categoria') ? $this->Html->link($produto->categoria->id, ['controller' => 'Categorias', 'action' => 'view', $produto->categoria->id]) : '' ?></td>
+            <td><?= $produto->has('categoria') ? $this->Html->link($produto->categoria->nome_categoria, ['controller' => 'Categorias', 'action' => 'view', $produto->categoria->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Fornecedor') ?></th>
-            <td><?= $produto->has('fornecedor') ? $this->Html->link($produto->fornecedor->id, ['controller' => 'Fornecedors', 'action' => 'view', $produto->fornecedor->id]) : '' ?></td>
+            <td><?= $produto->has('fornecedor') ? $this->Html->link($produto->fornecedor->nome_fornecedor, ['controller' => 'Fornecedors', 'action' => 'view', $produto->fornecedor->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>

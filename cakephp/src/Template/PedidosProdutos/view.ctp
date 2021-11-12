@@ -26,7 +26,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Produto') ?></th>
-            <td><?= $pedidosProduto->has('produto') ? $this->Html->link($pedidosProduto->produto->id, ['controller' => 'Produtos', 'action' => 'view', $pedidosProduto->produto->id]) : '' ?></td>
+            <td><?= $pedidosProduto->has('produto') ? $this->Html->link($pedidosProduto->produto->nome, ['controller' => 'Produtos', 'action' => 'view', $pedidosProduto->produto->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>

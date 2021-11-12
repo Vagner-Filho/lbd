@@ -28,35 +28,30 @@ DELIMITER $
 CREATE OR REPLACE TRIGGER fornecedors_log_update
 AFTER UPDATE ON fornecedors FOR EACH ROW
     BEGIN
-    	DECLARE triggered_when timestamp;
-        SET time_zone = 'America/Campo_grande';
+        DECLARE triggered_when timestamp;
         SET triggered_when = now();
-        IF new.nome_fornecedor <> old.nome_fornecedor && new.cep <> old.cep THEN
+        IF new.nome_fornecedor <> old.nome_fornecedor || new.cep <> old.cep THEN
             INSERT INTO fornecedors_log VALUES (new.id, new.cnpj, old.nome_fornecedor, new.nome_fornecedor, old.cep, new.cep, triggered_when, 'U');
-       	END IF;
+        END IF;
 END $ 
 
 $
-CREATE OR REPLACE TRIGGER fornecedors_log_delete
+CREATE OR REPLACE TRIGGER fornecedors_log_afterDelete
 AFTER DELETE ON fornecedors FOR EACH ROW
 	  BEGIN
 	    	DECLARE triggered_when timestamp;
-        SET time_zone = 'America/Campo_grande';
         SET triggered_when = now();
         INSERT INTO fornecedors_log VALUES (old.id, old.cnpj, old.nome_fornecedor, null, old.cep, null, triggered_when, 'D');
+END $
 
-        -- Declaração para remover produtos do fornecedor exclúido
-        DELETE FROM produtos AS p WHERE p.fornecedor_id = old.id;
-END $ DELIMITER ;
-
--- Trigger que usei para testar a declaração de delete acima
--- delimiter $
--- CREATE TRIGGER lbd.fornecedors_log_delete
--- BEFORE DELETE ON lbd.fornecedors FOR EACH ROW
--- 	BEGIN
---         DELETE FROM lbd.produtos AS p WHERE p.fornecedor_id = old.id;
--- 	END;
--- $
+/*Trigger que usei para testar a declaração de delete acima*/
+$
+CREATE OR REPLACE TRIGGER fornecedors_log_beforeDelete
+BEFORE DELETE ON fornecedors FOR EACH ROW
+    BEGIN
+        DELETE FROM produtos WHERE fornecedor_id = old.id;
+END
+$ DELIMITER ;
 
 
 /*TRIGGERS POSTRESQL*/
@@ -99,13 +94,20 @@ CREATE OR REPLACE TABLE categorias_log (
 
 /*TRIGGERS MYSQL*/
 DELIMITER $
-CREATE OR REPLACE TRIGGER categorias_log_delete
+CREATE OR REPLACE TRIGGER categorias_log_afterDelete
 AFTER DELETE ON categorias FOR EACH ROW
     BEGIN
         DECLARE triggered_when timestamp;
-        SET time_zone = 'America/Campo_grande';
         SET triggered_when = now();
         INSERT INTO categorias_log VALUES (old.id, old.nome_categoria, null, triggered_when, 'D');
+END $
+
+/*Trigger que usei para testar a declaração de delete acima*/
+$
+CREATE OR REPLACE TRIGGER categorias_log_beforeDelete
+BEFORE DELETE ON categorias FOR EACH ROW
+    BEGIN
+        DELETE FROM produtos WHERE categoria_id = old.id;
 END $
 
 $
@@ -113,7 +115,6 @@ CREATE OR REPLACE TRIGGER categorias_log_update
 AFTER UPDATE ON categorias FOR EACH ROW
     BEGIN
         DECLARE triggered_when timestamp;
-        SET time_zone = 'America/Campo_grande';
         SET triggered_when = now();
         IF new.nome_categoria <> old.nome_categoria THEN
             IF new.nome_categoria = ' ' THEN
@@ -180,7 +181,6 @@ CREATE OR REPLACE TRIGGER produtos_log_delete
 AFTER DELETE ON produtos FOR EACH ROW
     BEGIN
         DECLARE triggered_when timestamp;
-        SET time_zone = 'America/Campo_grande';
         SET triggered_when = now();
         INSERT INTO produtos_log VALUES (old.id, old.nome, old.preco_produto, null, old.categoria_id, old.fornecedor_id, null, triggered_when, 'D');
 END $
@@ -190,9 +190,8 @@ CREATE OR REPLACE TRIGGER produtos_log_update
 AFTER UPDATE ON produtos FOR EACH ROW
     BEGIN
         DECLARE triggered_when timestamp;
-        SET time_zone = 'America/Campo_grande';
         SET triggered_when = now();
-        IF new.preco_produto <> old.preco_produto && new.fornecedor_id <> old.fornecedor_id THEN
+        IF new.preco_produto <> old.preco_produto || new.fornecedor_id <> old.fornecedor_id || new.categoria_id <> old.categoria_id THEN
             IF new.preco_produto = 0 THEN
                 UPDATE produtos SET preco_produto = old.preco_produto WHERE preco_produto = new.preco_produto;
             END IF;
@@ -255,7 +254,6 @@ CREATE OR REPLACE TRIGGER clientes_log_delete
 AFTER DELETE ON clientes FOR EACH ROW
     BEGIN
         DECLARE triggered_when timestamp;
-        SET time_zone = 'America/Campo_grande';
         SET triggered_when = now();
         INSERT INTO clientes_log VALUES (old.id, old.nome, null, old.email, old.senha, triggered_when, 'D');
 END $
@@ -265,7 +263,6 @@ CREATE OR REPLACE TRIGGER clientes_log_update
 AFTER UPDATE ON clientes FOR EACH ROW
     BEGIN
         DECLARE triggered_when timestamp;
-        SET time_zone = 'America/Campo_grande';
         SET triggered_when = now();
         IF new.nome <> old.nome THEN
             IF new.nome = ' ' THEN
@@ -329,7 +326,6 @@ CREATE OR REPLACE TRIGGER clientes_log_delete
 AFTER DELETE ON clientes FOR EACH ROW
     BEGIN
         DECLARE triggered_when timestamp;
-        SET time_zone = 'America/Campo_grande';
         SET triggered_when = now();
         INSERT INTO clientes_log VALUES (old.id, old.nome, null, old.email, old.senha, triggered_when, 'D');
 END $
@@ -339,7 +335,6 @@ CREATE OR REPLACE TRIGGER clientes_log_update
 AFTER UPDATE ON clientes FOR EACH ROW
     BEGIN
         DECLARE triggered_when timestamp;
-        SET time_zone = 'America/Campo_grande';
         SET triggered_when = now();
         IF new.nome <> old.nome THEN
             IF new.nome = ' ' THEN

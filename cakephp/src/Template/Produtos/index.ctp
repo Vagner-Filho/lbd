@@ -35,8 +35,8 @@
                 <td><?= $this->Number->format($produto->id) ?></td>
                 <td><?= h($produto->nome) ?></td>
                 <td><?= $this->Number->format($produto->preco_produto) ?></td>
-                <td><?= $produto->has('categoria') ? $this->Html->link($produto->categoria->id, ['controller' => 'Categorias', 'action' => 'view', $produto->categoria->id]) : '' ?></td>
-                <td><?= $produto->has('fornecedor') ? $this->Html->link($produto->fornecedor->id, ['controller' => 'Fornecedors', 'action' => 'view', $produto->fornecedor->id]) : '' ?></td>
+                <td><?= $produto->has('categoria') ? $this->Html->link($produto->categoria->nome_categoria, ['controller' => 'Categorias', 'action' => 'view', $produto->categoria->id]) : '' ?></td>
+                <td><?= $produto->has('fornecedor') ? $this->Html->link($produto->fornecedor->nome_fornecedor, ['controller' => 'Fornecedors', 'action' => 'view', $produto->fornecedor->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $produto->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $produto->id]) ?>

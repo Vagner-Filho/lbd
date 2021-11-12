@@ -33,7 +33,7 @@
             <tr>
                 <td><?= $this->Number->format($pedido->id) ?></td>
                 <td><?= $this->Number->format($pedido->preco_pedido) ?></td>
-                <td><?= $pedido->has('cliente') ? $this->Html->link($pedido->cliente->id, ['controller' => 'Clientes', 'action' => 'view', $pedido->cliente->id]) : '' ?></td>
+                <td><?= $pedido->has('cliente') ? $this->Html->link($pedido->cliente->cpf, ['controller' => 'Clientes', 'action' => 'view', $pedido->cliente->id]) : '' ?></td>
                 <td><?= $pedido->has('enderecos_pedido') ? $this->Html->link($pedido->enderecos_pedido->id, ['controller' => 'EnderecosPedidos', 'action' => 'view', $pedido->enderecos_pedido->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $pedido->id]) ?>

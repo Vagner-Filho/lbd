@@ -20,7 +20,7 @@
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Cliente') ?></th>
-            <td><?= $enderecosCliente->has('cliente') ? $this->Html->link($enderecosCliente->cliente->id, ['controller' => 'Clientes', 'action' => 'view', $enderecosCliente->cliente->id]) : '' ?></td>
+            <td><?= $enderecosCliente->has('cliente') ? $this->Html->link($enderecosCliente->cliente->cpf, ['controller' => 'Clientes', 'action' => 'view', $enderecosCliente->cliente->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Rua') ?></th>
