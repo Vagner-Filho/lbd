@@ -35,7 +35,7 @@
             echo $this->Form->control('preco_produto');
             echo $this->Form->control('categoria_id', ['options' => $categorias]);
             echo $this->Form->control('fornecedor_id', ['options' => $fornecedors]);
-            echo $this->Form->control('pedidos._ids', ['options' => $pedidos]);
+            //echo $this->Form->control('pedidos._ids', ['options' => $pedidos]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

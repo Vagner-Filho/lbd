@@ -269,7 +269,7 @@ CREATE OR REPLACE TABLE `pedidos_produtos` (
   `produto_id` int(11),
   PRIMARY KEY (`id`),
   FOREIGN KEY (`pedido_id`) REFERENCES pedidos(`id`),
-  FOREIGN KEY (`produto_id`) REFERENCES produtos(`id`) ON DELETE SET NULL
+  FOREIGN KEY (`produto_id`) REFERENCES produtos(`id`) ON DELETE NO ACTION ON UPDATE NO ACTION 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
