@@ -271,3 +271,36 @@ CREATE OR REPLACE TABLE `pedidos_produtos` (
   FOREIGN KEY (`pedido_id`) REFERENCES pedidos(`id`),
   FOREIGN KEY (`produto_id`) REFERENCES produtos(`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+
+insert into fornecedors values(1, '00.000.000/0001-00', 'Relojoaria', '012.345.678-91'), 
+                              (2, '11.111.111/0001-11', 'Musical', '987.654.321-00');
+
+insert into categorias values(1, 'Bom'), (2, 'Ruim'); 
+
+insert into produtos values (1, 'Relogio Apple', 100, 1, 1), 
+                            (2, 'Relogio Camelo', 50, 2, 1),
+                            (3, 'Violão', 1000, 2, 2),
+                            (4, 'Piano', 10000, 1, 2);
+
+
+insert into clientes values (1, '111.111.111-11', 'Joao', 'joao@gmail.com', '12345'), 
+                            (2, '222.222.222-22', 'Maria', 'maria@gmail.com', '12345');
+
+insert into enderecos_clientes values (1, 1, 123, 'Brilhante', 'Campo Grande', 'Mato Grosso do Sul'), 
+                                      (2, 2, 321, 'Bandeirantes', 'Campo Grande', 'Mato Grosso do Sul'),
+                                      (3, 2, 222, 'Afonso Pena', 'Campo Grande', 'Mato Grosso do Sul');
+
+insert into enderecos_pedidos values (1, 111, 'Xavantes', 'Campo Grande', 'Mato Grosso do Sul'), 
+                                     (2, 222, 'Maracaju', 'Campo Grande', 'Mato Grosso do Sul');
+
+insert into pedidos values (1, 1100, 1, 1), 
+                           (2, 12100, 2, 1);
+
+insert into pedidos_produtos values (1, 1, 2), 
+                                    (2, 1, 3),
+                                    (3, 2, 1), 
+                                    (4, 2, 2),
+                                    (5, 2, 4);
