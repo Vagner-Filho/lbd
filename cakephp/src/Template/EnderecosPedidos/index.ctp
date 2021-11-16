@@ -45,8 +45,6 @@
                 <td><?= h($enderecosPedido->estado) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $enderecosPedido->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $enderecosPedido->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $enderecosPedido->id], ['confirm' => __('Are you sure you want to delete # {0}?', $enderecosPedido->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

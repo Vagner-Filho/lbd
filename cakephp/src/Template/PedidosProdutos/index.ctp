@@ -40,8 +40,6 @@
                 <td><?= $pedidosProduto->has('produto') ? $this->Html->link($pedidosProduto->produto->nome, ['controller' => 'Produtos', 'action' => 'view', $pedidosProduto->produto->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $pedidosProduto->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $pedidosProduto->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $pedidosProduto->id], ['confirm' => __('Are you sure you want to delete # {0}?', $pedidosProduto->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

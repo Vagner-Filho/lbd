@@ -72,8 +72,6 @@
                 <td><?= h($enderecosClientes->estado) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'EnderecosClientes', 'action' => 'view', $enderecosClientes->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'EnderecosClientes', 'action' => 'edit', $enderecosClientes->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'EnderecosClientes', 'action' => 'delete', $enderecosClientes->id], ['confirm' => __('Are you sure you want to delete # {0}?', $enderecosClientes->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -99,8 +97,6 @@
                 <td><?= h($pedidos->enderecos_pedido_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Pedidos', 'action' => 'view', $pedidos->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Pedidos', 'action' => 'edit', $pedidos->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Pedidos', 'action' => 'delete', $pedidos->id], ['confirm' => __('Are you sure you want to delete # {0}?', $pedidos->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

@@ -14,7 +14,7 @@
  * @var \App\View\AppView $this
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$cakeDescription = 'Sistema de Controle de Estoque';
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,8 +43,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </ul>
         <div class="top-bar-section">
             <ul class="right">
-                <li><a target="_blank" href="https://book.cakephp.org/3/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
+                <!--<li><a target="_blank" href="https://book.cakephp.org/3/">Documentation</a></li>
+                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>-->
             </ul>
         </div>
     </nav>

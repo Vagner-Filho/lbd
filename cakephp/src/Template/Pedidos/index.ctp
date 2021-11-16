@@ -43,8 +43,6 @@
                 <td><?= $pedido->has('enderecos_pedido') ? $this->Html->link($pedido->enderecos_pedido->id, ['controller' => 'EnderecosPedidos', 'action' => 'view', $pedido->enderecos_pedido->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $pedido->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $pedido->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $pedido->id], ['confirm' => __('Are you sure you want to delete # {0}?', $pedido->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
