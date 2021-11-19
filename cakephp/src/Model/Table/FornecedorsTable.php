@@ -55,7 +55,7 @@ class FornecedorsTable extends Table
 
         $validator
             ->scalar('cnpj')
-            ->maxLength('cnpj', 200)
+            ->maxLength('cnpj', 18)
             ->requirePresence('cnpj', 'create')
             ->notEmptyString('cnpj')
             ->add('cnpj', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
@@ -68,7 +68,7 @@ class FornecedorsTable extends Table
 
         $validator
             ->scalar('cep')
-            ->maxLength('cep', 200)
+            ->maxLength('cep', 8)
             ->requirePresence('cep', 'create')
             ->notEmptyString('cep');
 

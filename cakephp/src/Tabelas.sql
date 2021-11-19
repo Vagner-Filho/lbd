@@ -15,7 +15,8 @@ CREATE OR REPLACE TABLE `fornecedors` (
 /*Log do fornecedor, onde é inserido informação sempre que um nome de fornecedor ou cep é modificado ou um fornecedor é excluído*/
 CREATE OR REPLACE TABLE fornecedors_log (
   id_fornecedor int(11),
-  cnpj varchar(15),
+  old_cnpj varchar(15),
+  new_cnpj varchar(15),
   old_nome_fornecedor varchar(200),
   new_nome_fornecedor varchar(200),
   old_cep int(15),
@@ -35,7 +36,7 @@ AFTER UPDATE ON fornecedors FOR EACH ROW
         DECLARE triggered_when timestamp;
         SET triggered_when = now();
         IF new.nome_fornecedor <> old.nome_fornecedor || new.cep <> old.cep THEN
-            INSERT INTO fornecedors_log VALUES (new.id, new.cnpj, old.nome_fornecedor, new.nome_fornecedor, old.cep, new.cep, triggered_when, 'U');
+            INSERT INTO fornecedors_log VALUES (new.id, old.cnpj, new.cnpj, old.nome_fornecedor, new.nome_fornecedor, old.cep, new.cep, triggered_when, 'U');
         END IF;
 END $ 
 
@@ -46,7 +47,7 @@ AFTER DELETE ON fornecedors FOR EACH ROW
 	  BEGIN
 	    	DECLARE triggered_when timestamp;
         SET triggered_when = now();
-        INSERT INTO fornecedors_log VALUES (old.id, old.cnpj, old.nome_fornecedor, null, old.cep, null, triggered_when, 'D');
+        INSERT INTO fornecedors_log VALUES (old.id, old.cnpj, null, old.nome_fornecedor, null, old.cep, null, triggered_when, 'D');
 END $
 
 /*Trigger responsável por deletar um produto, caso seu fornecedor seja excluído*/
@@ -70,8 +71,8 @@ CREATE OR REPLACE TABLE categorias_log (
   id int(11),
   old_nome_categoria varchar(200),
   new_nome_categoria varchar(200),
-  tipo char(1),
   data_alteracao timestamp,
+  tipo char(1),
   CHECK (tipo IN ('U', 'D'))
 );
 
@@ -133,7 +134,8 @@ CREATE OR REPLACE TABLE produtos_log (
   nome varchar(200),
   old_preco_produto double,
   new_preco_produto double,
-  categoria_id int(11),
+  old_categoria_id int(11),
+  new_categoria_id int(11),
   old_fornecedor_id int(11),
   new_fornecedor_id int(11),
   data_alteracao timestamp,
@@ -152,7 +154,7 @@ AFTER DELETE ON produtos FOR EACH ROW
     BEGIN
         DECLARE triggered_when timestamp;
         SET triggered_when = now();
-        INSERT INTO produtos_log VALUES (old.id, old.nome, old.preco_produto, null, old.categoria_id, old.fornecedor_id, null, triggered_when, 'D');
+        INSERT INTO produtos_log VALUES (old.id, old.nome, old.preco_produto, null, old.categoria_id, null, old.fornecedor_id, null, triggered_when, 'D');
 END $
 
 
@@ -167,7 +169,7 @@ AFTER UPDATE ON produtos FOR EACH ROW
             IF new.preco_produto = 0 THEN
                 UPDATE produtos SET preco_produto = old.preco_produto WHERE preco_produto = new.preco_produto;
             END IF;
-            INSERT INTO produtos_log VALUES (old.id, old.nome, old.preco_produto, new.preco_produto, old.categoria_id, old.fornecedor_id, new.fornecedor_id, triggered_when, 'U');
+            INSERT INTO produtos_log VALUES (old.id, old.nome, old.preco_produto, new.preco_produto, old.categoria_id, new.categoria_id, old.fornecedor_id, new.fornecedor_id, triggered_when, 'U');
         END IF;
 END $ DELIMITER ;
 
@@ -269,21 +271,24 @@ CREATE OR REPLACE TABLE `pedidos_produtos` (
   `produto_id` int(11),
   PRIMARY KEY (`id`),
   FOREIGN KEY (`pedido_id`) REFERENCES pedidos(`id`),
-  FOREIGN KEY (`produto_id`) REFERENCES produtos(`id`) ON DELETE NO ACTION ON UPDATE NO ACTION 
+  FOREIGN KEY (`produto_id`) REFERENCES produtos(`id`) ON DELETE SET NULL ON UPDATE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 
 
-insert into fornecedors values(1, '00.000.000/0001-00', 'Relojoaria', '012.345.678-91'), 
-                              (2, '11.111.111/0001-11', 'Musical', '987.654.321-00');
+insert into fornecedors values(1, '00.000.000/0001-00', 'Relojoaria', '00112233'),
+                              (2, '11.111.111/0001-11', 'Musical', '11223344'),
+                              (3, '22.222.222/0001-22', 'Computação', '22334455');
 
 insert into categorias values(1, 'Bom'), (2, 'Ruim'); 
 
-insert into produtos values (1, 'Relogio Apple', 100, 1, 1), 
-                            (2, 'Relogio Camelo', 50, 2, 1),
+insert into produtos values (1, 'Relogio Apple', 2000, 1, 1), 
+                            (2, 'Relogio Camelô', 50, 2, 1),
                             (3, 'Violão', 1000, 2, 2),
-                            (4, 'Piano', 10000, 1, 2);
+                            (4, 'Piano', 10000, 1, 2),
+                            (5, 'Notebook', 6000, 1, 3),
+                            (6, 'Mouse', 350, 1, 3);
 
 
 insert into clientes values (1, '111.111.111-11', 'Joao', 'joao@gmail.com', '12345'), 
@@ -296,11 +301,11 @@ insert into enderecos_clientes values (1, 1, 123, 'Brilhante', 'Campo Grande', '
 insert into enderecos_pedidos values (1, 111, 'Xavantes', 'Campo Grande', 'Mato Grosso do Sul'), 
                                      (2, 222, 'Maracaju', 'Campo Grande', 'Mato Grosso do Sul');
 
-insert into pedidos values (1, 1100, 1, 1), 
-                           (2, 12100, 2, 1);
+insert into pedidos values (1, 3000, 1, 1), 
+                           (2, 16350, 2, 2);
 
-insert into pedidos_produtos values (1, 1, 2), 
+insert into pedidos_produtos values (1, 1, 1), 
                                     (2, 1, 3),
-                                    (3, 2, 1), 
-                                    (4, 2, 2),
-                                    (5, 2, 4);
+                                    (3, 2, 4), 
+                                    (4, 2, 5),
+                                    (5, 2, 6);
